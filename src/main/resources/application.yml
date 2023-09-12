@@ -4,8 +4,8 @@ spring:
       filter:
         enabled: true
   servlet:
-   multipart:
-     max-file-size: 20MB
-     max-request-size: 20MB
-  image:
-   local: true
+    multipart:
+      max-file-size: 20MB
+      max-request-size: 20MB
+image:
+  local: true

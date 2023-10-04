@@ -10,7 +10,9 @@ spring:
   datasource:
     driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql://localhost:5432/pictgram
-    username: ${psql.user}
-    password: ${psql.password}
+    username: pictgram
+    password: password
 image:
   local: true
+onesignal:
+  id: ${onesignal.id}

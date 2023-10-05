@@ -10,8 +10,23 @@ spring:
   datasource:
     driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql://localhost:5432/pictgram
-    username: pictgram
-    password: password
+    username: ${psql.user}
+    password: ${psql.password}
+  mail:
+    default-encoding: UTF-8
+    protocol: smtp
+    host: ${spring.mail.host}
+    port: ${spring.mail.port}
+    username: ${spring.mail.username}
+    password: ${spring.mail.password}
+    properties: 
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+  thymeleaf:
+    check-template-location: false
 image:
   local: true
 onesignal:

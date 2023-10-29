@@ -99,6 +99,9 @@ public class TopicsController {
 
 	@GetMapping(path = "/topics")
 	public String index(Principal principal, Model model) throws IOException {
+		log.debug("debug");
+		log.warn("warn");
+		log.error("error");
 		Authentication authentication = (Authentication) principal;
 		UserInf user = (UserInf) authentication.getPrincipal();
 
@@ -115,7 +118,7 @@ public class TopicsController {
 		return "topics/index";
 	}
 
-	public TopicForm getTopic(UserInf user, Topic entity) throws FileNotFoundException, IOException {
+	public TopicForm getTopic(UserInf user, Topic entity) {
 		modelMapper.getConfiguration().setAmbiguityIgnored(true);
 		modelMapper.typeMap(Topic.class, TopicForm.class).addMappings(mapper -> mapper.skip(TopicForm::setUser));
 		modelMapper.typeMap(Topic.class, TopicForm.class).addMappings(mapper -> mapper.skip(TopicForm::setFavorites));
@@ -146,7 +149,7 @@ public class TopicsController {
 
 				data.append(new String(Base64Utils.encode(os.toByteArray()), "ASCII"));
 				form.setImageData(data.toString());
-			}
+			} catch (IOException e) {}
 		}
 
 		UserForm userForm = modelMapper.map(entity.getUser(), UserForm.class);
@@ -317,7 +320,6 @@ public class TopicsController {
 			log.warn(e.getMessage(), e);
 		}
 	}
-
 	@RequestMapping(value = "/topics/topic.csv", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE
 			+ "; charset=UTF-8; Content-Disposition: attachment")
 	@ResponseBody

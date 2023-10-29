@@ -37,6 +37,10 @@ spring:
           github:
             clientId: ${github.client.id}
             clientSecret: ${github.client.secret}
+logging:
+  file:
+    name: "spring.log"
+    path: "/var/log/tomcat"
 image:
   local: true
 onesignal:

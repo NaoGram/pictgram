@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/layout}">
+
+<head>
+	<title>Pictgram</title>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+		integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<script type="text/javascript" src="http://code.jquery.com/jquery-2.2.3.min.js"></script>
+</head>
+
+<body>
+	<div class="topics-index-wrapper text-center" layout:fragment="contents">
+		<div style="padding: 30px;"></div>
+		<div class="container">
+			<div class="main-content">
+
+				<!-- タイトル -->
+				<div class="Title">
+					<h1 class="black">FAQ</h1>
+
+
+					<div th:each="faq : ${faqs}">
+						<div class="accordion" id="accordionPanelsStayOpenExample">
+							<div class="accordion-item" th:id="'heading' + ${faq.id}">
+								<h2 class="accordion-header">
+									<button class="accordion-button" th:text="${faq.title}" type="button"
+										data-bs-toggle="collapse" th:data-bs-target="'#panelsStayOpen-collapse-' + ${faq.id}"
+										aria-expanded="true"></button>
+								</h2>
+								<div th:id="'panelsStayOpen-collapse-' + ${faq.id}" class="accordion-collapse collapse show">
+									<div class="accordion-body">
+										<p th:text="${faq.content}"></p>
+									</div>
+								</div>
+							</div>
+
+
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+
+
+</body>
+
+</html>
